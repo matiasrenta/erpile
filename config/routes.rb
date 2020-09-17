@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :projects
   resources :dashboard
   resources :social_users
   resources :api_keys

@@ -303,6 +303,10 @@ es:
       comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
+      project:
+        one: Proyecto
+        other: Proyectos
+        fa_icon: 'fa-fw fa fa-home'
       nomina_document:
         one: Reporte de Nómina
         other: Reportes de Nómina
@@ -403,10 +407,6 @@ es:
         one: Documento Financiero
         other: Documentos Financieros
         fa_icon: 'fa-fw fa fa-file-pdf-o'
-      project:
-        one: Proyecto
-        other: Proyectos
-        fa_icon: 'fa-fw fa fa-list-ol'
       key_analytical:
         one: Afectación
         other: Afectaciones
