@@ -39,7 +39,7 @@ Rails.application.configure do
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
-  config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
+  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -66,24 +66,34 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: ENV['DOMAIN_OR_SUBDOMAIN'] }
-  #config.action_mailer.default_options = {
-  #    from: %{"#{ENV['ACTION_MAILER_FRIENDLY_FROM']}" <noreply@#{ENV['DOMAIN_OR_SUBDOMAIN']}>},
-  #    content_type: "text/html"
-  #}
-  config.action_mailer.asset_host = "http://#{ENV['DOMAIN_OR_SUBDOMAIN']}"
   config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #    openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
+  #    address: 'localhost',
+  #    port: 25,
+  #    domain: ENV['DOMAIN_OR_SUBDOMAIN'],
+  #    user_name: nil, #NOREPLY_MAIL,
+  #    password: nil #NOREPLY_PASS,
+  #    #:authentication  => :login
+  #}
 
-  # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-      :address              => "smtp.gmail.com",
-      :port                 => 587,
-      :user_name            => ENV['USER_NAME'],
-      :password             => ENV['PASSWORD'],
-      :authentication       => "plain",
-      :enable_starttls_auto => true
+      :user_name => ENV['SENDGRID_USERNAME'],
+      :password => ENV['SENDGRID_PASSWORD'],
+      :domain => 'chucky.ml',
+      :address => 'smtp.sendgrid.net',
+      :port => '465',
+      :authentication => :plain,
+      :enable_starttls_auto => true,
+      :ssl => true,
+      :tls => true
   }
 
-
+  config.action_mailer.default_options = {
+      from: %{"#{ENV['ACTION_MAILER_FRIENDLY_FROM']}" <noreply@#{ENV['DOMAIN_OR_SUBDOMAIN']}>},
+      content_type: "text/html"
+  }
+  config.action_mailer.asset_host = "http://#{ENV['DOMAIN_OR_SUBDOMAIN']}"
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -99,10 +109,19 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # envia mail ante exceptions
+  #config.middleware.use ExceptionNotification::Rack,
+  #                      email: {
+  #                          email_prefix: ENV['EXCEPTION_NOTIFICATION_EMAIL_PREFIX'],
+  #                          sender_address: %{"Exception Notifier" <notifier@#{ENV['DOMAIN_OR_SUBDOMAIN']}>},
+  #                          exception_recipients: [ENV['EXCEPTION_NOTIFICATION_EMAIL']]
+  #                      }
+
+  # envia mail ante exceptions
   config.middleware.use ExceptionNotification::Rack,
                         email: {
                             email_prefix: ENV['EXCEPTION_NOTIFICATION_EMAIL_PREFIX'],
                             #sender_address: %{"Exception Notifier" <notifier@#{ENV['DOMAIN_OR_SUBDOMAIN']}>},
                             exception_recipients: [ENV['EXCEPTION_NOTIFICATION_EMAIL']]
                         }
+
 end
