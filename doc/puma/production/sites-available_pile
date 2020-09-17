@@ -4,14 +4,14 @@ upstream puma-erpile {
 }
 
 server {
-    if ($host = sys.lapile.com.ar) {
+    if ($host = app.lapile.com.ar) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
     listen 80;
     listen [::]:80;
 
-    server_name sys.lapile.com.ar;
+    server_name app.lapile.com.ar;
     return 404; # managed by Certbot
 }
 
@@ -20,7 +20,7 @@ server {
   listen [::]:443 ssl http2;
 
   # If you're planning on using SSL (which you should), you can also go ahead and fill out the following server_name variable:
-  server_name sys.lapile.com.ar;
+  server_name app.lapile.com.ar;
 
   # Don't forget to update these, too
   root /home/deployer/railsapps/erpile/current/public;
