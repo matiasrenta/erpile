@@ -1,0 +1,105 @@
+<section id="widget-grid">
+  <div class="row">
+    <article class="col-xs-12">
+      <div class="jarviswidget <%= @filter_active ? 'jarviswidget-color-redLight' : 'jarviswidget-color-darken' %>" id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false">
+        <header>
+          <span class="widget-icon"><i class="fa fa-table"></i></span>
+
+          <h2><%= @filter_active ? t('simple_form.buttons.filtering') : '' %></h2>
+
+          <div class="widget-toolbar filter-group">
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_expense_path, class: 'btn btn-primary' if (can? :create, Expense) %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn btn-primary"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
+          </div>
+        </header>
+        <div class="no-padding">
+          <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
+            <div class="col-xs-12"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+                  <fieldset>
+                    <div class="row">
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[project_id_cont]"><%= t('simple_form.labels.project') %></label>
+                        <%= f.select :project_id_eq, options_from_collection_for_select(Project.all, :id, :name, @q.project_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[concept_cont]"><%= t('simple_form.labels.defaults.concept') %></label>
+                        <%= f.search_field :concept_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[amount_gteq]"><%= t('simple_form.labels.defaults.amount') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :amount_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :amount_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[fecha_gteq]"><%= t('simple_form.labels.defaults.fecha') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :fecha_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.fecha_gteq) %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :fecha_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.fecha_lteq) %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[user_id_cont]"><%= t('simple_form.labels.user') %></label>
+                        <%= f.select :user_id_eq, options_from_collection_for_select(User.all, :id, :name, @q.user_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[status_cont]"><%= t('simple_form.labels.defaults.status') %></label>
+                        <%= f.select :status_eq, options_for_select(Expense::STATUS_TYPES, @q.status_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      </div>
+                    </div>
+                    <div class="row pull-right">
+                      <div class="col-sm-12">
+                        <%= render 'shared/submit_filters' %>
+                      </div>
+                    </div>
+                  </fieldset>
+              <% end %>
+            </div>
+          </div>
+          <div class="widget-body">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <thead>
+              <tr>
+                <th class='all control'><%= sort_link(@q, :project_name, t('simple_form.labels.defaults.project')) %></th>
+                <th><%= sort_link(@q, :concept, t('simple_form.labels.defaults.concept')) %></th>
+                <th><%= sort_link(@q, :amount, t('simple_form.labels.defaults.amount')) %></th>
+                <th><%= sort_link(@q, :fecha, t('simple_form.labels.defaults.fecha')) %></th>
+                <th><%= sort_link(@q, :user_name, t('simple_form.labels.defaults.user')) %></th>
+                <th><%= sort_link(@q, :status, t('simple_form.labels.defaults.status')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @expenses.each do |expense| %>
+                  <tr>
+                    <td><%= expense.project.try(:name) %></td>
+                    <td><%= expense.concept %></td>
+                    <td align='right'><%= expense.amount %></td>
+                    <td><%= l(expense.fecha, format: :without_seg) %></td>
+                    <td><%= expense.user.try(:name) %></td>
+                    <td><%= expense.i18n_status %></td>
+                    <td class="table-actions">
+                      <%= render 'shared/action_icons', locals: {target: expense} %>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="widget-footer">
+            <%= render 'shared/pagination', locals: {target: @expenses, model_index_path: expenses_path} %>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

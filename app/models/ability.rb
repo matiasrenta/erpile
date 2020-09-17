@@ -42,6 +42,8 @@ class Ability
 	end
 
 	def administrador
+		can [:manage], Project
+		can [:manage], Expense
 		can [:manage], User
 		can :read, :administrations
 		can :change_user_role, User

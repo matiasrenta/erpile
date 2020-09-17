@@ -1,4 +1,4 @@
-class Project < ActiveRecord::Base
+class Expense < ActiveRecord::Base
 	include PublicActivity::Model
   tracked only: [:create, :update, :destroy]
   tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
@@ -10,26 +10,23 @@ class Project < ActiveRecord::Base
               :model_label => proc {|controller, model| model.try(:name)}
           }
 
+
+  belongs_to :user
+  belongs_to :project
+
+
   STATUS_CREATED      = 'CREATED'
-  STATUS_CHARGED      = 'CHARGED'
   STATUS_ACCOUNTED    = 'ACCOUNTED'
-  STATUS_CANCELED     = 'CANCELED'
 
   STATUS_TYPES = [['CREADO', STATUS_CREATED],
-                  ['COBRADO', STATUS_CHARGED],
-                  ['CONTABILIZADO', STATUS_ACCOUNTED],
-                  ['CANCELADO', STATUS_CANCELED]]
-
-  has_many :expenses, dependent: :restrict_with_error
+                  ['CONTABILIZADO', STATUS_ACCOUNTED]]
 
   before_validation on: :create do
     self.status = STATUS_CREATED
   end
 
-  validates :name, :status, presence: true
-  validates :price, numericality: true
-
-
+  validates :concept, :amount, :fecha, :user_id, :status, presence: true
+  validates :amount, :user_id, numericality: true
 
   #un array con solo los status que van a la bbdd
   def self.system_status_array
@@ -42,10 +39,6 @@ class Project < ActiveRecord::Base
 
   def created?
     self.status == STATUS_CREATED
-  end
-
-  def canceled?
-    self.status == STATUS_CANCELED
   end
 
   def i18n_status
