@@ -1,0 +1,27 @@
+# /etc/systemd/system/puma-erpile.service
+
+[Unit]
+Description=erpile Puma Server
+After=network.target
+
+[Service]
+Type=simple
+User=deployer
+
+# EnvironmentFile=/home/myapp51/app/current/.rbenv-vars
+
+Environment=RAILS_ENV=production
+WorkingDirectory=/home/deployer/railsapps/erpile/current/
+
+ExecStart=/home/deployer/.rbenv/bin/rbenv exec bundle exec puma -C /home/deployer/railsapps/erpile/shared/puma.rb
+
+ExecStop=/home/deployer/.rbenv/bin/rbenv exec bundle exec pumactl -F /home/deployer/railsapps/erpile/shared/puma.rb stop
+
+ExecReload=/home/deployer/.rbenv/bin/rbenv exec bundle exec pumactl -F /home/deployer/railsapps/erpile/shared/puma.rb phased-restart
+
+TimeoutSec=15
+Restart=always
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
