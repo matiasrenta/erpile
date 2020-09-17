@@ -58,6 +58,8 @@ config/database.yml
 
 # ignore production environment variables
 .env.production
+.env.development
+.env.production-in-staging
 
 #ignorar .directory no sabemos que es
 .directory
