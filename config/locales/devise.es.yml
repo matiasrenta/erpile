@@ -33,10 +33,10 @@ es:
       welcome:
         subject: "Tu cuenta ha sido creada"
         hi: "Hola, %{name_or_email}!"
-        content: "Tu cuenta para el Sistema de Segumiento y Transparencia de la Delegación Cuauhtémoc ha sido creada. Ahora tienes que ingresar al siguiente link para generar tu nueva contraseña:"
+        content: "Se creó tu cuenta en el sistema de gestión SysPile. Ahora tienes que ingresar al siguiente link para cambiar la contraseña (la actual fue generada automáticamente por el sistema):"
         link: "Cambiar mi contraseña"
         footer: "Tu cuenta fue creada por un administrador del sistema."
-        bie: "Saludos."
+        bie: "Saludos de parte del equipo LaPile."
     omniauth_callbacks:
       failure: "No se te ha podido autorizar de %{kind} debido a \"%{reason}\"."
       success: "Identificado correctamente de %{kind}."
