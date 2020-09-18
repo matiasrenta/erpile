@@ -27,3 +27,10 @@ Sett.seed_once(:var) do |s|
   s.value = 10
   s.description = 'Tamaño máximo en megabytes para el store s3_expense_attach_backend. usado para los comprobantes de gastos'
 end
+
+Sett.seed_once(:var) do |s|
+  s.var = 'REFILE_S3_PROJECT_ATTACH_MAX_FILESIZE'
+  s.value = 10
+  s.description = 'Tamaño máximo en megabytes para el store s3_project_attach_backend. usado para los archivos de proyectos'
+end
+

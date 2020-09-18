@@ -47,6 +47,20 @@
                   <%= @project.i18n_status %>
                 </div>
               </div>
+
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.files') %></strong></label>
+                <div class="col-lg-9 details-data">
+                  <% @project.project_attaches.each do |attach| %>
+                      <p class="form-control-static">
+                        <%= link_to attachment_url(attach, :file) do %>
+                            <%= image_tag attachment_url(attach, :file, :fill, 100, 100) %>
+                        <% end %>
+                      </p>
+                  <% end %>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

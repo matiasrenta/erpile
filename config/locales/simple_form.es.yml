@@ -53,6 +53,8 @@ es:
         avatar: 'Avatar'
         key: 'Código'
         avatar_filename: 'Avatar'
+        file: 'Archivo'
+        files: 'Archivos'
         file_size: 'Tamaño de Archivo'
         file_content_type: 'Content Type de Archivo'
         file_filename: 'Nombre de Archivo'
@@ -76,6 +78,7 @@ es:
         labels: 'Etiquetas'
         concept: 'Concepto'
         expense_attaches: 'Comprobantes'
+        project_attaches: 'Archivos'
 
     hints:
       access_only_with_token: 'La app no necesita autenticar usuario, solo usa el token para acceder a la API'

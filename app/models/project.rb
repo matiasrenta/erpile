@@ -21,6 +21,11 @@ class Project < ActiveRecord::Base
                   ['CANCELADO', STATUS_CANCELED]]
 
   has_many :expenses, dependent: :restrict_with_error
+  has_many :project_attaches, dependent: :destroy
+
+  accepts_attachments_for :project_attaches, attachment: :file, append: true
+  accepts_nested_attributes_for :project_attaches, allow_destroy: true
+
 
   before_validation on: :create do
     self.status = STATUS_CREATED
