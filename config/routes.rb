@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'welcome/cotizador'
   resources :expenses
   resources :projects
   resources :dashboard

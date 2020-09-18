@@ -10,16 +10,20 @@
       </li>
 
       <% if can? :read, Project %>
-          <li data-step="3" data-intro="Este es el menú de Actividad de Usuarios.">
+          <li data-step="3" data-intro="">
             <a href="<%= projects_path %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t('activerecord.models.project.other') %></span></a>
           </li>
       <% end %>
 
       <% if can? :read, Expense %>
-          <li data-step="3" data-intro="Este es el menú de Actividad de Usuarios.">
+          <li data-step="3" data-intro="">
             <a href="<%= expenses_path %>"><i class="fa fa-lg fa-fw fa-dollar"></i> <span class="menu-item-parent"><%= t('activerecord.models.expense.other') %></span></a>
           </li>
       <% end %>
+
+      <li data-step="3" data-intro="">
+        <a href="welcome/cotizador"><i class="fa fa-lg fa-fw fa-file"></i> <span class="menu-item-parent">Cotizador</span></a>
+      </li>
 
       <% if can? :read, PublicActivity::Activity %>
           <li data-step="3" data-intro="Este es el menú de Actividad de Usuarios.">

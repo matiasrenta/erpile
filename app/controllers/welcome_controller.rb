@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  skip_authorization_check only: [:index, :prueba]
+  skip_authorization_check only: [:index, :prueba, :cotizador]
   def index
     #todo: asegurar que todos puedan ver root_url o bien crear un permiso y darles acceso. En principio todos deberian ver un home correspondiente a su role
     #authorize! :read, User
@@ -16,4 +16,9 @@ class WelcomeController < ApplicationController
   def prueba
     set_content_title(nil, ['Prueba'])
   end
+
+  def cotizador
+    set_content_title(nil, ['Cotizador'])
+  end
+
 end

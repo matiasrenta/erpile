@@ -19,7 +19,7 @@
                   <fieldset>
                     <div class="row">
                       <div class="col-md-3 col-sm-6 col-xs-12">
-                        <label for="q[project_id_cont]"><%= t('simple_form.labels.project') %></label>
+                        <label for="q[project_id_cont]"><%= t('simple_form.labels.defaults.project') %></label>
                         <%= f.select :project_id_eq, options_from_collection_for_select(Project.all, :id, :name, @q.project_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                       </div>
                       <div class="col-md-3 col-sm-6 col-xs-12">
@@ -47,7 +47,7 @@
                         </div>
                       </div>
                       <div class="col-md-3 col-sm-6 col-xs-12">
-                        <label for="q[user_id_cont]"><%= t('simple_form.labels.user') %></label>
+                        <label for="q[user_id_cont]"><%= t('simple_form.labels.defaults.user') %></label>
                         <%= f.select :user_id_eq, options_from_collection_for_select(User.all, :id, :name, @q.user_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                       </div>
                       <div class="col-md-3 col-sm-6 col-xs-12">

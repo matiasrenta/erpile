@@ -61,6 +61,7 @@ es:
         locale: 'Idioma'
         time_zone: 'Uso Horario'
         access_only_with_token: 'Accede solamente con token'
+        user: 'Usuario'
 
         amount: 'Monto'
         supplier: 'Proveedor'
@@ -79,6 +80,7 @@ es:
         concept: 'Concepto'
         expense_attaches: 'Comprobantes'
         project_attaches: 'Archivos'
+        project: 'Proyecto'
 
     hints:
       access_only_with_token: 'La app no necesita autenticar usuario, solo usa el token para acceder a la API'
