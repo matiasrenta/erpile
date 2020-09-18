@@ -1,5 +1,4 @@
 class Project < ActiveRecord::Base
-  has_many :incomes, dependent: :restrict_with_error
 	include PublicActivity::Model
   tracked only: [:create, :update, :destroy]
   tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
@@ -22,6 +21,7 @@ class Project < ActiveRecord::Base
                   ['CANCELADO', STATUS_CANCELED]]
 
   has_many :expenses, dependent: :restrict_with_error
+  has_many :incomes, dependent: :restrict_with_error
   has_many :project_attaches, dependent: :destroy
 
   accepts_attachments_for :project_attaches, attachment: :file, append: true
@@ -32,8 +32,8 @@ class Project < ActiveRecord::Base
     self.status = STATUS_CREATED
   end
 
-  validates :name, :status, presence: true
-  validates :price, numericality: true
+  validates :name, :status, :saldo, presence: true
+  validates :price, :saldo, numericality: true
 
 
 
@@ -58,6 +58,9 @@ class Project < ActiveRecord::Base
     STATUS_TYPES.find { |e| e[1] == self.status}[0]
   end
 
+  def saldo
+    incomes.sum(:amount) - expenses.sum(:amount)
+  end
 
   def except_attr_in_public_activity
     [:id, :updated_at]

@@ -40,6 +40,18 @@
                   <%= @project.price ? "$ #{number_to_currency(@project.price, unit: '')}" : nil %>
                 </div>
               </div>
+
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.saldo') %></strong></label>
+                <div class="col-lg-9 details-data">
+                  <% saldo = @project.saldo %>
+                  <span style="color: <%= saldo < 0 ? 'red' : 'blue' %>">
+                    <%= "$ #{number_to_currency(saldo, unit: '')}" %>
+                  </span>
+                </div>
+              </div>
+
+
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.status') %></strong></label>
 
