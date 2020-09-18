@@ -303,10 +303,14 @@ es:
       comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
+      income:
+        one: Ingreso
+        other: Ingresos
+        fa_icon: 'fa-fw fa fa-dollar'
       expense:
         one: Gasto
         other: Gastos
-        fa_icon: 'fa-fw fa fa-dollar'
+        fa_icon: 'fa-fw fa fa-money'
       project:
         one: Proyecto
         other: Proyectos

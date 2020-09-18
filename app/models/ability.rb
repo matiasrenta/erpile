@@ -42,6 +42,7 @@ class Ability
 	end
 
 	def administrador
+		can [:manage], Income
 		can [:manage], Project
 		can [:manage], Expense
 		can [:manage], User

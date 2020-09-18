@@ -1,6 +1,7 @@
 require 'valid_email'
 
 class User < ActiveRecord::Base
+  has_many :incomes, dependent: :restrict_with_error
   acts_as_messageable
   #acts_as_paranoid
   include PublicActivity::Model

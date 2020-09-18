@@ -17,7 +17,13 @@
 
       <% if can? :read, Expense %>
           <li data-step="3" data-intro="">
-            <a href="<%= expenses_path %>"><i class="fa fa-lg fa-fw fa-dollar"></i> <span class="menu-item-parent"><%= t('activerecord.models.expense.other') %></span></a>
+            <a href="<%= expenses_path %>"><i class="fa fa-lg fa-fw fa-money"></i> <span class="menu-item-parent"><%= t('activerecord.models.expense.other') %></span></a>
+          </li>
+      <% end %>
+
+      <% if can? :read, Income %>
+          <li data-step="3" data-intro="">
+            <a href="<%= incomes_path %>"><i class="fa fa-lg fa-fw fa-dollar"></i> <span class="menu-item-parent"><%= t('activerecord.models.income.other') %></span></a>
           </li>
       <% end %>
 
