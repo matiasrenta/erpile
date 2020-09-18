@@ -22,5 +22,8 @@ Sett.seed_once(:var) do |s|
   s.description = 'El titulo que muestra el navegador. Esta en layouts/header.erb'
 end
 
-
-
+Sett.seed_once(:var) do |s|
+  s.var = 'REFILE_S3_EXPENSE_ATTACH_MAX_FILESIZE'
+  s.value = 10
+  s.description = 'Tamaño máximo en megabytes para el store s3_expense_attach_backend. usado para los comprobantes de gastos'
+end

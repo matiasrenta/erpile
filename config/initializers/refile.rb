@@ -14,9 +14,13 @@ if Rails.env.production? && Admin::Settings['REFILE_USE_S3'] == 'true'
   Refile.backends['s3_avatar_cache'] = Refile::S3.new(prefix: "cache_avatar", max_size: Admin::Settings['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i.megabytes, **aws)
   Refile.backends['s3_thing_backend'] = Refile::S3.new(prefix: "store_thing", max_size: Admin::Settings['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i.megabytes, **aws)
   Refile.backends['s3_thing_cache'] = Refile::S3.new(prefix: "cache_thing", max_size: Admin::Settings['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i.megabytes, **aws)
+  Refile.backends['s3_expense_attach_backend'] = Refile::S3.new(prefix: "store_expense_attach", max_size: Admin::Settings['REFILE_S3_EXPENSE_ATTACH_MAX_FILESIZE'].to_i.megabytes, **aws)
+  Refile.backends['s3_expense_attach_cache'] = Refile::S3.new(prefix: "cache_expense_attach", max_size: Admin::Settings['REFILE_S3_EXPENSE_ATTACH_MAX_FILESIZE'].to_i.megabytes, **aws)
 else
   Refile.backends['s3_avatar_backend'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_avatar/store').to_s, max_size: Admin::Settings['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i.megabytes)
   Refile.backends['s3_avatar_cache'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_avatar/cache').to_s, max_size: Admin::Settings['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i.megabytes)
   Refile.backends['s3_thing_backend'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_thing/store').to_s, max_size: Admin::Settings['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i.megabytes)
   Refile.backends['s3_thing_cache'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_thing/cache').to_s, max_size: Admin::Settings['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i.megabytes)
+  Refile.backends['s3_expense_attach_backend'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_expense_attach/store').to_s, max_size: Admin::Settings['REFILE_S3_EXPENSE_ATTACH_MAX_FILESIZE'].to_i.megabytes)
+  Refile.backends['s3_expense_attach_cache'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_expense_attach/cache').to_s, max_size: Admin::Settings['REFILE_S3_EXPENSE_ATTACH_MAX_FILESIZE'].to_i.megabytes)
 end

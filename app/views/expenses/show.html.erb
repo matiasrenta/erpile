@@ -59,7 +59,24 @@
                 <div class="col-lg-9 details-data">
                   <%= @expense.i18n_status %>
                 </div>
-            </div>
+              </div>
+
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.expense_attaches') %></strong></label>
+                <div class="col-lg-9 details-data">
+                  <% @expense.expense_attaches.each do |attach| %>
+                      <p class="form-control-static">
+                          <%= link_to attachment_url(attach, :file) do %>
+                              <%= image_tag attachment_url(attach, :file, :fill, 100, 100) %>
+                          <% end %>
+                      </p>
+                  <% end %>
+                </div>
+              </div>
+
+
+
+
           </div>
         </div>
       </div>

@@ -85,8 +85,9 @@
 
               <div class="row show-details" >
                 <label class="col-lg-3 col-md-4 control-label"><strong>Imágenes</strong></label>
-                <div class="col-lg-9 details-data"><% @thing.thing_attaches.each do |attach| %>
-                  <p class="form-control-static"><%= image_tag attachment_url(attach, :file, :fill, 100, 100) %></p>
+                <div class="col-lg-9 details-data">
+                  <% @thing.thing_attaches.each do |attach| %>
+                    <p class="form-control-static"><%= image_tag attachment_url(attach, :file, :fill, 100, 100) %></p>
                   <% end %>
                 </div>
               </div>

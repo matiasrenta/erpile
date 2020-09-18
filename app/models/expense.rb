@@ -1,5 +1,6 @@
 class Expense < ActiveRecord::Base
-	include PublicActivity::Model
+
+  include PublicActivity::Model
   tracked only: [:create, :update, :destroy]
   tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
   tracked owner: ->(controller, model) {controller.try(:current_user)}
@@ -13,6 +14,11 @@ class Expense < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :project
+  has_many :expense_attaches, dependent: :destroy
+
+  accepts_attachments_for :expense_attaches, attachment: :file, append: true
+  accepts_nested_attributes_for :expense_attaches, allow_destroy: true
+
 
 
   STATUS_CREATED      = 'CREATED'
