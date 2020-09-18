@@ -20,6 +20,8 @@
             <%= f.association :user, collection: User.less_superusers, selected: creating? ? current_user.id : @expense.user_id %>
             <%= f.input :status, as: :select, collection: Expense::STATUS_TYPES, selected: f.object.status if updating?%>
 
+            <%= render 'shared/dropzone_multiple', locals: {f: f, field: :expenses_attaches_files, max_filesize: Sett['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i} %>
+
             <div class="widget-footer">
               <div class="form-actions">
                 <div class="btn-group">

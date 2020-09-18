@@ -82,7 +82,7 @@
                   <tr>
                     <td><%= expense.project.try(:name) %></td>
                     <td><%= expense.concept %></td>
-                    <td align='right'><%= expense.amount %></td>
+                    <td align='right'><%= expense.amount ? "$ #{number_to_currency(expense.amount, unit: '')}" : nil %></td>
                     <td><%= l(expense.fecha, format: :without_seg) %></td>
                     <td><%= expense.user.try(:name) %></td>
                     <td><%= expense.i18n_status %></td>
