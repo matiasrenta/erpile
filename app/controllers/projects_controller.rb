@@ -8,6 +8,12 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
+    expenses = indexize(Expense, {collection: Expense.by_project(@project.id), no_paginate: true})
+    incomes  = indexize(Income, {collection: Income.by_project(@project.id), no_paginate: true})
+
+    #@expenses  = indexize(Income, {collection: expenses + incomes, order: :created_at})
+
+    @expenses_and_incomes = ( expenses + incomes ).sort_by(&:created_at).reverse
   end
 
   # GET /projects/new

@@ -27,6 +27,8 @@ class Expense < ActiveRecord::Base
   STATUS_TYPES = [['CREADO', STATUS_CREATED],
                   ['CONTABILIZADO', STATUS_ACCOUNTED]]
 
+  scope :by_project, -> (project_id){where(project_id: project_id)}
+
   before_validation on: :create do
     self.status = STATUS_CREATED
   end

@@ -37,7 +37,7 @@
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.amount') %></strong></label>
 
                 <div class="col-lg-9 details-data">
-                  <%= @expense.amount ? "$ #{number_to_currency(@expense.amount, unit: '')}" : nil %>
+                  <span style="color:red;"><%= @expense.amount ? "$ #{number_to_currency(@expense.amount, unit: '')}" : nil %></span>
                 </div>
               </div>
               <div class="row show-details">
