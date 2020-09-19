@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   belongs_to :role
   has_many :expenses, dependent: :restrict_with_error
   has_many :incomes, dependent: :restrict_with_error
+  has_many :sent_tranferences, class_name: 'Tranference', foreign_key: :from_user_id
+  has_many :recieved_tranferences, class_name: 'Tranference', foreign_key: :to_user_id
 
   has_many :things, dependent: :restrict_with_error
   # Include default devise modules. Others available are:

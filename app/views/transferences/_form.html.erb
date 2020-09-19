@@ -1,0 +1,44 @@
+<div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+  <header>
+    <h2><%= creating? ? "<i class='fa fa-file'></i>".html_safe : "<i class='fa fa-pencil'></i>".html_safe %></h2>
+  </header>
+  <div>
+    <div class="widget-body">
+      <%= simple_form_for @transference, html: {class: 'form-horizontal'},
+                          wrapper: :horizontal_form,
+                          wrapper_mappings: {
+                                  check_boxes: :horizontal_radio_and_checkboxes,
+                                  radio_buttons: :horizontal_radio_and_checkboxes,
+                                  file: :horizontal_file_input,
+                                  boolean: :horizontal_boolean
+                          } do |f| %>
+          <div class="form-inputs edit">
+
+            <% if creating? %>
+                <%= f.input :concept %>
+                <%= f.input :from_user_id, as: :hidden, input_html: {value: current_user.id} %>
+                <%= f.association :to_user, collection: users_hide_or_show_superusers.where.not(id: current_user.id) %>
+                <%= f.input :amount %>
+            <% else %>
+                <%= f.input :concept, input_html: {disabled: true} %>
+                <%= f.association :from_user, input_html: {disabled: true} %>
+                <%= f.input :amount, input_html: {disabled: true} %>
+                <%= f.input :status, as: :select, collection: Transference::STATUS_TYPES, selected: f.object.status %>
+            <% end %>
+            <div class="widget-footer">
+              <div class="form-actions">
+                <div class="btn-group">
+                  <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), transferences_path, class: 'btn btn-default btn-sm' if can?(:read, Transference) %>
+                  <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @transference, class: 'btn btn-default btn-sm' if can?(:read, Transference) && updating? %>
+                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @transference, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: t('helpers.messages.are_you_sure'), 'original-title': 'Destroy'} if can?(:destroy, Transference) && updating? %>
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    <i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

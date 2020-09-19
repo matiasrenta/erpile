@@ -81,6 +81,8 @@ es:
         expense_attaches: 'Comprobantes'
         project_attaches: 'Archivos'
         project: 'Proyecto'
+        from_user: 'Desde usuario'
+        to_user: 'Hacia usuario'
 
     hints:
       access_only_with_token: 'La app no necesita autenticar usuario, solo usa el token para acceder a la API'

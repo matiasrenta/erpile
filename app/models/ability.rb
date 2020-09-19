@@ -42,6 +42,11 @@ class Ability
 	end
 
 	def administrador
+		can [:create, :read], Transference
+		can [:update], Transference, to_user_id: @user.id, status: Transference::STATUS_CREATED
+		can [:destroy], Transference, to_user_id: @user.id, status: Transference::STATUS_CREATED
+		can [:destroy], Transference, from_user_id: @user.id, status: Transference::STATUS_CREATED
+
 		can [:manage], Income
 		can [:manage], Project
 		can [:manage], Expense
@@ -58,6 +63,9 @@ class Ability
   def cannot_for_everyone
     #todo: cannot manage para todas las entidades que son CONSTANT
     #ejemplo: cannot [:create, :update, :destroy], User
+
+		cannot [:update, :destroy], Transference, status: Transference::STATUS_ACCEPTED
+		cannot [:update], Transference, from_user_id: @user.id
 
 		unless @user.superuser?
 			cannot [:create, :read, :update, :destroy], User, role_id: Role.find_by_name('superuser').id

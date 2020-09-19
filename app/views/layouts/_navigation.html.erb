@@ -27,6 +27,13 @@
           </li>
       <% end %>
 
+      <% if can? :read, Transference %>
+          <li data-step="3" data-intro="">
+            <a href="<%= transferences_path %>"><i class="fa fa-lg fa-fw fa-exchange"></i> <span class="menu-item-parent"><%= t('activerecord.models.transference.other') %></span></a>
+          </li>
+      <% end %>
+
+
       <li data-step="3" data-intro="">
         <a href="welcome/cotizador"><i class="fa fa-lg fa-fw fa-file"></i> <span class="menu-item-parent">Cotizador</span></a>
       </li>
