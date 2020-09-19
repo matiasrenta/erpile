@@ -24,10 +24,15 @@ class Transference < ActiveRecord::Base
     self.status = STATUS_CREATED
   end
 
-
   validates :concept, :from_user_id, :to_user_id, :amount, :status, presence: true
   validates :from_user_id, :to_user_id, :amount, numericality: true
 
+  after_save on: :update do
+    if self.status == STATUS_ACCEPTED
+      Expense.create(concept: "TRANSFERENCIA - #{self.concept}", amount: self.amount, fecha: self.created_at, user_id: self.from_user_id, status: Expense::STATUS_CREATED)
+      Income.create(concept: "TRANSFERENCIA - #{self.concept}", amount: self.amount, fecha: self.created_at, user_id: self.to_user_id, status: Income::STATUS_CREATED)
+    end
+  end
 
 
 

@@ -64,8 +64,8 @@ class Ability
     #todo: cannot manage para todas las entidades que son CONSTANT
     #ejemplo: cannot [:create, :update, :destroy], User
 
-		cannot [:update, :destroy], Transference, status: Transference::STATUS_ACCEPTED
-		cannot [:update], Transference, from_user_id: @user.id
+		#cannot [:update, :destroy], Transference, status: Transference::STATUS_ACCEPTED
+		#cannot [:update], Transference, from_user_id: @user.id
 
 		unless @user.superuser?
 			cannot [:create, :read, :update, :destroy], User, role_id: Role.find_by_name('superuser').id
