@@ -45,9 +45,11 @@
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.saldo') %></strong></label>
                 <div class="col-lg-9 details-data">
                   <% saldo = @project.saldo %>
-                  <span style="color: <%= saldo < 0 ? 'red' : 'blue' %>">
-                    <%= "$ #{number_to_currency(saldo, unit: '')}" %>
-                  </span>
+                  <% if saldo < 0 %>
+                      <span style="color: red"><%= "- $ #{number_to_currency(saldo, unit: '')}" %></span>
+                  <% else %>
+                      <span style="color: blue"><%= "$ #{number_to_currency(saldo, unit: '')}" %></span>
+                  <% end %>    
                 </div>
               </div>
 

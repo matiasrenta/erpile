@@ -35,6 +35,18 @@
             </div>
 
             <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong>Caja</strong></label>
+              <div class="col-lg-9 details-data">
+                <% caja = @user.caja %>
+                <% if caja < 0 %>
+                    <span style="color: red;"><%= "- $ #{number_to_currency(caja, unit: '')}" %></span>
+                <% else %>
+                    <span style="color: blue;"><%= "$ #{number_to_currency(caja, unit: '')}" %></span>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="row show-details">
               <label class="col-lg-3 col-md-4 control-label">
                 <strong><%= t('simple_form.labels.defaults.time_zone') %></strong>
               </label>

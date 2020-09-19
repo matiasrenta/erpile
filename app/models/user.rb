@@ -1,7 +1,6 @@
 require 'valid_email'
 
 class User < ActiveRecord::Base
-  has_many :incomes, dependent: :restrict_with_error
   acts_as_messageable
   #acts_as_paranoid
   include PublicActivity::Model
@@ -17,6 +16,7 @@ class User < ActiveRecord::Base
 
   belongs_to :role
   has_many :expenses, dependent: :restrict_with_error
+  has_many :incomes, dependent: :restrict_with_error
 
   has_many :things, dependent: :restrict_with_error
   # Include default devise modules. Others available are:
@@ -48,6 +48,11 @@ class User < ActiveRecord::Base
 
   def mailboxer_email(object)
     email
+  end
+
+  # es igual que el saldo que tienen los projects, le digo caja porque me parece más claro
+  def caja
+    incomes.sum(:amount) - expenses.sum(:amount)
   end
 
   # sobreescribí este metodo de Devise solo para poder enviar un subject distinto para el mail de bienvenida y el de reset pasword instruction
