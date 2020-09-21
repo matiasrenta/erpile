@@ -72,8 +72,8 @@
                     <td><%= transference.concept %></td>
                     <td><%= transference.from_user.try(:name) %></td>
                     <td><%= transference.to_user.try(:name) %></td>
-                    <td align='right'><%= transference.amount %></td>
-                    <td><%= transference.status %></td>
+                    <td align='right'><%= transference.amount ? "$ #{number_to_currency(transference.amount, unit: '')}" : nil %></td>
+                    <td><%= transference.i18n_status %></td>
                     <td class="table-actions">
                       <%= render 'shared/action_icons', locals: {target: transference} %>
                     </td>

@@ -19,37 +19,42 @@
           <div class="widget-body">
 
             <div class="form-group">
-                                                  <div class="row show-details">
-                    <label class="col-lg-3 col-md-4 control-label"><strong><%=t('simple_form.labels.defaults.concept') %></strong></label>
-                    <div class="col-lg-9 details-data">
-                                                <%= @transference.concept %>
-                                          </div>
-                  </div>
-                                                  <div class="row show-details">
-                    <label class="col-lg-3 col-md-4 control-label"><strong><%=t('simple_form.labels.defaults.from_user') %></strong></label>
-                    <div class="col-lg-9 details-data">
-                                                                              <%= @transference.from_user.try(:name) %>
-                                                                    </div>
-                  </div>
-                                                  <div class="row show-details">
-                    <label class="col-lg-3 col-md-4 control-label"><strong><%=t('simple_form.labels.defaults.to_user') %></strong></label>
-                    <div class="col-lg-9 details-data">
-                                                                              <%= @transference.to_user.try(:name) %>
-                                                                    </div>
-                  </div>
-                                                  <div class="row show-details">
-                    <label class="col-lg-3 col-md-4 control-label"><strong><%=t('simple_form.labels.defaults.amount') %></strong></label>
-                    <div class="col-lg-9 details-data">
-                                                <%= @transference.amount %>
-                                          </div>
-                  </div>
-                                                  <div class="row show-details">
-                    <label class="col-lg-3 col-md-4 control-label"><strong><%=t('simple_form.labels.defaults.status') %></strong></label>
-                    <div class="col-lg-9 details-data">
-                                                <%= @transference.status %>
-                                          </div>
-                  </div>
-                          </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.concept') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <%= @transference.concept %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.from_user') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <%= @transference.from_user.try(:name) %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.to_user') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <%= @transference.to_user.try(:name) %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.amount') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <span><%= @transference.amount ? "$ #{number_to_currency(@transference.amount, unit: '')}" : nil %></span>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.status') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <%= @transference.i18n_status %>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

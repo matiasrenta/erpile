@@ -34,6 +34,22 @@ class Transference < ActiveRecord::Base
     end
   end
 
+  #un array con solo los status que van a la bbdd
+  def self.system_status_array
+    STATUS_TYPES.map{|s| s[1]}
+  end
+
+  def self.i18n_status(status)
+    STATUS_TYPES.find { |st| st[1] == status}[0]
+  end
+
+  def created?
+    self.status == STATUS_CREATED
+  end
+
+  def i18n_status
+    STATUS_TYPES.find { |e| e[1] == self.status}[0]
+  end
 
 
   def except_attr_in_public_activity
