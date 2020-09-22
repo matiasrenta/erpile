@@ -8,8 +8,8 @@
         <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
 
           <div class="widget-toolbar filter-group">
-            <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), projects_path, class: 'btn btn-primary' %>
-            <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_project_path(@project), class: 'btn btn-primary' if can?(:update, @project) %>
+            <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), cash_closings_path, class: 'btn btn-primary' %>
+            <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_cash_closing_path(@cash_closing), class: 'btn btn-primary' if can?(:update, @cash_closing) %>
           </div>
         </header>
         <!-- widget div-->
@@ -20,58 +20,133 @@
 
             <div class="form-group">
               <div class="row show-details">
-                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.name') %></strong></label>
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.fecha_hora') %></strong></label>
 
                 <div class="col-lg-9 details-data">
-                  <%= @project.name %>
+                  <%= l(@cash_closing.fecha_hora, :format => :long) if @cash_closing.fecha_hora %>
                 </div>
               </div>
-              <div class="row show-details">
-                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.description') %></strong></label>
-
-                <div class="col-lg-9 details-data">
-                  <%= @project.description %>
-                </div>
-              </div>
-              <div class="row show-details">
-                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.price') %></strong></label>
-
-                <div class="col-lg-9 details-data">
-                  <%= @project.price ? number_to_currency(@project.price) : nil %>
-                </div>
-              </div>
-
-              <div class="row show-details">
-                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.saldo') %></strong></label>
-                <div class="col-lg-9 details-data">
-                  <% saldo = @project.saldo %>
-                  <% if saldo < 0 %>
-                      <span style="color: red"><%= number_to_currency(saldo) %></span>
-                  <% else %>
-                      <span style="color: blue"><%= number_to_currency(saldo) %></span>
-                  <% end %>
-                </div>
-              </div>
-
-
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.status') %></strong></label>
-
                 <div class="col-lg-9 details-data">
-                  <%= @project.i18n_status %>
+                  <%= @cash_closing.i18n_status %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.user') %></strong></label>
+                <div class="col-lg-9 details-data">
+                  <%= @cash_closing.user.try(:name) %>
                 </div>
               </div>
 
               <div class="row show-details">
-                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.files') %></strong></label>
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.maxi_caja') %></strong></label>
+
                 <div class="col-lg-9 details-data">
-                  <% @project.project_attaches.each do |attach| %>
-                      <p class="form-control-static">
-                        <%= link_to attachment_url(attach, :file) do %>
-                            <%= image_tag attachment_url(attach, :file, :fill, 100, 100) %>
-                        <% end %>
-                      </p>
+                  <%= @cash_closing.maxi_caja %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.javi_caja') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <%= @cash_closing.javi_caja %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.marcos_caja') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <%= @cash_closing.marcos_caja %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.mati_caja') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <%= @cash_closing.mati_caja %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.lapile_caja') %></strong></label>
+                <div class="col-lg-9 details-data">
+                  <%= @cash_closing.lapile_caja %> (Esta es la "torta" a repartir entre los socios)
+                </div>
+              </div>
+
+
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.maxi_amount') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <% if @cash_closing.maxi_amount < 0 %>
+                      <span style="color: red; font-weight: bold;"><%= number_to_currency(@cash_closing.maxi_amount) %></span> (Maxi debe "ponerse" con esta cantidad de dinero)
+                  <% else %>
+                      <span style="color: blue; font-weight: bold;"><%= number_to_currency(@cash_closing.maxi_amount) %></span> (Maxi debe recibir esta cantidad de dinero)
                   <% end %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.javi_amount') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <% if @cash_closing.javi_amount < 0 %>
+                      <span style="color: red; font-weight: bold;"><%= number_to_currency(@cash_closing.javi_amount) %></span> (Javi debe "ponerse" con esta cantidad de dinero)
+                  <% else %>
+                      <span style="color: blue; font-weight: bold;"><%= number_to_currency(@cash_closing.javi_amount) %></span> (Javi debe recibir esta cantidad de dinero)
+                  <% end %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.marcos_amount') %></strong></label>
+                <div class="col-lg-9 details-data">
+                  <% if @cash_closing.marcos_amount < 0 %>
+                      <span style="color: red; font-weight: bold;"><%= number_to_currency(@cash_closing.marcos_amount) %></span> (Marcos debe "ponerse" con esta cantidad de dinero)
+                  <% else %>
+                      <span style="color: blue; font-weight: bold;"><%= number_to_currency(@cash_closing.marcos_amount) %></span> (Marcos debe recibir esta cantidad de dinero)
+                  <% end %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.mati_amount') %></strong></label>
+                <div class="col-lg-9 details-data">
+                  <% if @cash_closing.mati_amount < 0 %>
+                      <span style="color: red; font-weight: bold;"><%= number_to_currency(@cash_closing.mati_amount) %></span> (Mati debe "ponerse" con esta cantidad de dinero)
+                  <% else %>
+                      <span style="color: blue; font-weight: bold;"><%= number_to_currency(@cash_closing.mati_amount) %></span> (Mati debe recibir esta cantidad de dinero)
+                  <% end %>
+                </div>
+              </div>
+
+
+
+
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.maxi_percent') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <%= @cash_closing.maxi_percent %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.javi_percent') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <%= @cash_closing.javi_percent %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.marcos_percent') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <%= @cash_closing.marcos_percent %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.mati_percent') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <%= @cash_closing.mati_percent %>
                 </div>
               </div>
 
@@ -80,7 +155,23 @@
         </div>
       </div>
     </article>
+
+    <!--
+    <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+        <header><span class="widget-icon"><i class="fa fa-info"></i></span>
+          <h2>Details</h2>
+        </header>
+        <div class="no-padding">
+          <div class="widget-body">
+
+          </div>
+        </div>
+      </div>
+    </article>
+    -->
   </div>
+
 
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -89,15 +180,13 @@
           <span class="widget-icon"><i class="fa fa-table"></i></span>
           <h2>Ingresos y gastos</h2>
           <div class="widget-toolbar filter-group">
-            <%= link_to raw("<i class='fa fa-money'></i> Nuevo Gasto"), new_expense_path, class: 'btn btn-primary' if (can? :create, Expense) %>
-            <%= link_to raw("<i class='fa fa-dollar'></i> Nuevo Ingreso"), new_income_path, class: 'btn btn-primary' if (can? :create, Income) %>
             <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn btn-primary"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
             </a>
           </div>
         </header>
         <div class="no-padding">
           <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
-            <div class="col-xs-12"><%= search_form_for(@q, url: project_path(@project), html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+            <div class="col-xs-12"><%= search_form_for(@q, url: cash_closing_path(@cash_closing), html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
                   <fieldset>
                     <div class="row">
                       <div class="col-md-3 col-sm-6 col-xs-12">
@@ -185,6 +274,7 @@
       </div>
     </article>
   </div>
+
 
 </section>
 

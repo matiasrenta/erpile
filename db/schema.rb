@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200919204347) do
+ActiveRecord::Schema.define(version: 20200922134509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,27 @@ ActiveRecord::Schema.define(version: 20200919204347) do
   add_index "api_users", ["confirmation_token"], name: "index_api_users_on_confirmation_token", unique: true, using: :btree
   add_index "api_users", ["email"], name: "index_api_users_on_email", unique: true, using: :btree
   add_index "api_users", ["reset_password_token"], name: "index_api_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "cash_closings", force: :cascade do |t|
+    t.datetime "fecha_hora"
+    t.decimal  "maxi_percent",   precision: 10, scale: 2
+    t.decimal  "javi_percent",   precision: 10, scale: 2
+    t.decimal  "marcos_percent", precision: 10, scale: 2
+    t.decimal  "mati_percent",   precision: 10, scale: 2
+    t.decimal  "maxi_amount",    precision: 10, scale: 2
+    t.decimal  "javi_amount",    precision: 10, scale: 2
+    t.decimal  "marcos_amount",  precision: 10, scale: 2
+    t.decimal  "mati_amount",    precision: 10, scale: 2
+    t.decimal  "lapile_caja",    precision: 10, scale: 2
+    t.decimal  "maxi_caja",      precision: 10, scale: 2
+    t.decimal  "javi_caja",      precision: 10, scale: 2
+    t.decimal  "marcos_caja",    precision: 10, scale: 2
+    t.decimal  "mati_caja",      precision: 10, scale: 2
+    t.string   "status"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "user_id"
+  end
 
   create_table "chucky_bot_fields", force: :cascade do |t|
     t.string   "name"
@@ -139,23 +160,25 @@ ActiveRecord::Schema.define(version: 20200919204347) do
   create_table "expenses", force: :cascade do |t|
     t.integer  "project_id"
     t.string   "concept"
-    t.decimal  "amount",     precision: 10, scale: 2
+    t.decimal  "amount",          precision: 10, scale: 2
     t.datetime "fecha"
     t.integer  "user_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "status"
+    t.integer  "cash_closing_id"
   end
 
   create_table "incomes", force: :cascade do |t|
     t.integer  "project_id"
     t.string   "concept"
-    t.decimal  "amount",     precision: 10, scale: 2
+    t.decimal  "amount",          precision: 10, scale: 2
     t.date     "fecha"
     t.integer  "user_id"
     t.string   "status"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.integer  "cash_closing_id"
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
@@ -322,10 +345,10 @@ ActiveRecord::Schema.define(version: 20200919204347) do
     t.string   "concept"
     t.integer  "from_user_id"
     t.integer  "to_user_id"
-    t.float    "amount"
+    t.decimal  "amount",       precision: 10, scale: 2
     t.string   "status"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "users", force: :cascade do |t|

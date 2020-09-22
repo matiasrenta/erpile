@@ -14,6 +14,7 @@ class Expense < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :project
+  belongs_to :cash_closing
   has_many :expense_attaches, dependent: :destroy
 
   accepts_attachments_for :expense_attaches, attachment: :file, append: true
@@ -28,6 +29,8 @@ class Expense < ActiveRecord::Base
                   ['CONTABILIZADO', STATUS_ACCOUNTED]]
 
   scope :by_project, -> (project_id){where(project_id: project_id)}
+  scope :by_cash_closing, -> (cash_closing_id){where(cash_closing_id: cash_closing_id)}
+  scope :created, -> {where(status: STATUS_CREATED)}
 
   before_validation on: :create do
     self.status = STATUS_CREATED

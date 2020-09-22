@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :cash_closings
   resources :transferences
   resources :incomes
   get 'welcome/cotizador'

@@ -1,0 +1,215 @@
+<section id="widget-grid">
+  <div class="row">
+    <article class="col-xs-12">
+      <div class="jarviswidget <%= @filter_active ? 'jarviswidget-color-redLight' : 'jarviswidget-color-darken' %>" id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false">
+        <header>
+          <span class="widget-icon"><i class="fa fa-table"></i></span>
+
+          <h2><%= @filter_active ? t('simple_form.buttons.filtering') : '' %></h2>
+
+          <div class="widget-toolbar filter-group">
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_cash_closing_path, class: 'btn btn-primary' if (can? :create, CashClosing) %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn btn-primary"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
+          </div>
+        </header>
+        <div class="no-padding">
+          <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
+            <div class="col-xs-12"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+                  <fieldset>
+                    <div class="row">
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[fecha_hora_gteq]"><%= t('simple_form.labels.defaults.fecha_hora') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :fecha_hora_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.fecha_hora_gteq) %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :fecha_hora_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.fecha_hora_lteq) %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[maxi_percent_gteq]"><%= t('simple_form.labels.defaults.maxi_percent') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :maxi_percent_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :maxi_percent_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[javi_percent_gteq]"><%= t('simple_form.labels.defaults.javi_percent') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :javi_percent_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :javi_percent_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[marcos_percent_gteq]"><%= t('simple_form.labels.defaults.marcos_percent') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :marcos_percent_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :marcos_percent_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[mati_percent_gteq]"><%= t('simple_form.labels.defaults.mati_percent') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :mati_percent_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :mati_percent_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[maxi_amount_gteq]"><%= t('simple_form.labels.defaults.maxi_amount') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :maxi_amount_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :maxi_amount_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[javi_amount_gteq]"><%= t('simple_form.labels.defaults.javi_amount') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :javi_amount_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :javi_amount_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[marcos_amount_gteq]"><%= t('simple_form.labels.defaults.marcos_amount') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :marcos_amount_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :marcos_amount_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[mati_amount_gteq]"><%= t('simple_form.labels.defaults.mati_amount') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :mati_amount_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :mati_amount_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[lapile_caja_gteq]"><%= t('simple_form.labels.defaults.lapile_caja') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :lapile_caja_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :lapile_caja_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[maxi_caja_gteq]"><%= t('simple_form.labels.defaults.maxi_caja') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :maxi_caja_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :maxi_caja_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[javi_caja_gteq]"><%= t('simple_form.labels.defaults.javi_caja') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :javi_caja_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :javi_caja_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[marcos_caja_gteq]"><%= t('simple_form.labels.defaults.marcos_caja') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :marcos_caja_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :marcos_caja_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[mati_caja_gteq]"><%= t('simple_form.labels.defaults.mati_caja') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :mati_caja_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :mati_caja_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[status_cont]"><%= t('simple_form.labels.defaults.status') %></label>
+                        <%= f.search_field :status_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="row pull-right">
+                      <div class="col-sm-12">
+                        <%= render 'shared/submit_filters' %>
+                      </div>
+                    </div>
+                  </fieldset>
+              <% end %>
+            </div>
+          </div>
+          <div class="widget-body">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <thead>
+              <tr>
+                <th class='all control'><%= sort_link(@q, :fecha_hora, t('simple_form.labels.defaults.fecha_hora')) %></th>
+                <th class='all control'><%= sort_link(@q, :status, t('simple_form.labels.defaults.status')) %></th>
+                <th><%= sort_link(@q, :maxi_amount, t('simple_form.labels.defaults.maxi_amount')) %></th>
+                <th><%= sort_link(@q, :javi_amount, t('simple_form.labels.defaults.javi_amount')) %></th>
+                <th><%= sort_link(@q, :marcos_amount, t('simple_form.labels.defaults.marcos_amount')) %></th>
+                <th><%= sort_link(@q, :mati_amount, t('simple_form.labels.defaults.mati_amount')) %></th>
+                <th><%= sort_link(@q, :lapile_caja, t('simple_form.labels.defaults.lapile_caja')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @cash_closings.each do |cash_closing| %>
+                  <tr>
+                    <td><%= l(cash_closing.fecha_hora, format: :without_seg) %></td>
+                    <td><%= cash_closing.i18n_status %></td>
+                    <td align='right'><%= cash_closing.maxi_amount %></td>
+                    <td align='right'><%= cash_closing.javi_amount %></td>
+                    <td align='right'><%= cash_closing.marcos_amount %></td>
+                    <td align='right'><%= cash_closing.mati_amount %></td>
+                    <td align='right'><%= cash_closing.lapile_caja %></td>
+                    <td class="table-actions">
+                      <%= render 'shared/action_icons', locals: {target: cash_closing} %>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="widget-footer">
+            <%= render 'shared/pagination', locals: {target: @cash_closings, model_index_path: cash_closings_path} %>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

@@ -83,6 +83,20 @@ es:
         project: 'Proyecto'
         from_user: 'Desde usuario'
         to_user: 'Hacia usuario'
+        maxi_percent: 'Maxi %'
+        javi_percent: 'Javi %'
+        marcos_percent: 'Marcos %'
+        mati_percent: 'Mati monto'
+        maxi_amount: 'Maxi monto'
+        javi_amount: 'Javi monto'
+        marcos_amount: 'Marcos monto'
+        mati_amount: 'Mati monto'
+        maxi_caja: 'Maxi caja'
+        javi_caja: 'Javi caja'
+        marcos_caja: 'Marcos caja'
+        mati_caja: 'Mati caja'
+        lapile_caja: 'LaPile caja'
+
 
     hints:
       access_only_with_token: 'La app no necesita autenticar usuario, solo usa el token para acceder a la API'

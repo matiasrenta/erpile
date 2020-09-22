@@ -1,0 +1,2 @@
+module CashClosingsHelper
+end

@@ -42,6 +42,7 @@ class Ability
 	end
 
 	def administrador
+		can [:manage], CashClosing
 		can [:create, :read], Transference
 		can [:update], Transference, to_user_id: @user.id, status: Transference::STATUS_CREATED
 		can [:destroy], Transference, to_user_id: @user.id, status: Transference::STATUS_CREATED

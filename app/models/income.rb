@@ -13,7 +13,7 @@ class Income < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :project
-
+  belongs_to :cash_closing
 
   STATUS_CREATED      = 'CREATED'
   STATUS_ACCOUNTED    = 'ACCOUNTED'
@@ -22,6 +22,8 @@ class Income < ActiveRecord::Base
                   ['CONTABILIZADO', STATUS_ACCOUNTED]]
 
   scope :by_project, -> (project_id){where(project_id: project_id)}
+  scope :by_cash_closing, -> (cash_closing_id){where(cash_closing_id: cash_closing_id)}
+  scope :created, -> {where(status: STATUS_CREATED)}
 
   before_validation on: :create do
     self.status = STATUS_CREATED

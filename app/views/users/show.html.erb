@@ -39,7 +39,7 @@
               <div class="col-lg-9 details-data">
                 <% caja = @user.caja %>
                 <% if caja < 0 %>
-                    <span style="color: red;"><%= "- #{number_to_currency(caja)}" %></span>
+                    <span style="color: red;"><%= number_to_currency(caja) %></span>
                 <% else %>
                     <span style="color: blue;"><%= number_to_currency(caja) %></span>
                 <% end %>

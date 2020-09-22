@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :incomes, dependent: :restrict_with_error
   has_many :sent_tranferences, class_name: 'Tranference', foreign_key: :from_user_id
   has_many :recieved_tranferences, class_name: 'Tranference', foreign_key: :to_user_id
+  has_many :cash_closings, dependent: :restrict_with_error
 
   has_many :things, dependent: :restrict_with_error
   # Include default devise modules. Others available are:
