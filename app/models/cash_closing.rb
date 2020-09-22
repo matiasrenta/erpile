@@ -28,6 +28,7 @@ class CashClosing < ActiveRecord::Base
 
   validates :fecha_hora, :maxi_percent, :javi_percent, :marcos_percent, :mati_percent, :maxi_amount, :javi_amount, :marcos_amount, :mati_amount, :lapile_caja, :maxi_caja, :javi_caja, :marcos_caja, :mati_caja, :status, :user_id, presence: true
   validates :maxi_percent, :javi_percent, :marcos_percent, :mati_percent, :maxi_amount, :javi_amount, :marcos_amount, :mati_amount, :lapile_caja, :maxi_caja, :javi_caja, :marcos_caja, :mati_caja, :user_id, numericality: true
+  validate :only_this_created
 
 
   after_save do
@@ -78,6 +79,13 @@ class CashClosing < ActiveRecord::Base
     self.javi_amount = (self.lapile_caja * self.javi_percent) - self.javi_caja
     self.marcos_amount = (self.lapile_caja * self.marcos_percent) - self.marcos_caja
     self.mati_amount = (self.lapile_caja * self.mati_percent) - self.mati_caja
+  end
+
+  def only_this_created
+    if CashClosing.where(status: CashClosing::STATUS_CREATED).count > 0
+      errors.add(:base, 'Hay un cierre de caja creado. Elimínelo o úselo en vez de crear uno nuevo')
+      return false
+    end
   end
 
 end
