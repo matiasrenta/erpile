@@ -66,11 +66,7 @@ class Ability
 
 	#este metodo es para restringir cosas a nivel negocio, no importa el perfil
   def cannot_for_everyone
-    #todo: cannot manage para todas las entidades que son CONSTANT
-    #ejemplo: cannot [:create, :update, :destroy], User
-
-		#cannot [:update, :destroy], Transference, status: Transference::STATUS_ACCEPTED
-		#cannot [:update], Transference, from_user_id: @user.id
+    #cannot manage para todas las entidades que son CONSTANT
 
 		unless @user.superuser?
 			cannot [:create, :read, :update, :destroy], User, role_id: Role.find_by_name('superuser').id

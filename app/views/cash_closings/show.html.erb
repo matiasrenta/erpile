@@ -43,34 +43,34 @@
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.maxi_caja') %></strong></label>
 
                 <div class="col-lg-9 details-data">
-                  <%= @cash_closing.maxi_caja %>
+                  <%= number_to_currency(@cash_closing.maxi_caja) %>
                 </div>
               </div>
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.javi_caja') %></strong></label>
 
                 <div class="col-lg-9 details-data">
-                  <%= @cash_closing.javi_caja %>
+                  <%= number_to_currency(@cash_closing.javi_caja) %>
                 </div>
               </div>
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.marcos_caja') %></strong></label>
 
                 <div class="col-lg-9 details-data">
-                  <%= @cash_closing.marcos_caja %>
+                  <%= number_to_currency(@cash_closing.marcos_caja) %>
                 </div>
               </div>
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.mati_caja') %></strong></label>
 
                 <div class="col-lg-9 details-data">
-                  <%= @cash_closing.mati_caja %>
+                  <%= number_to_currency(@cash_closing.mati_caja) %>
                 </div>
               </div>
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.lapile_caja') %></strong></label>
                 <div class="col-lg-9 details-data">
-                  <%= @cash_closing.lapile_caja %> (Esta es la "torta" a repartir entre los socios)
+                  <span style="font-weight: bold;"><%= number_to_currency(@cash_closing.lapile_caja) %></span> (Esta es la "torta" a repartir entre los socios)
                 </div>
               </div>
 

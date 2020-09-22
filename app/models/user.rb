@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
 
   # es igual que el saldo que tienen los projects, le digo caja porque me parece más claro
   def caja
-    incomes.sum(:amount) - expenses.sum(:amount)
+    incomes.created.sum(:amount) - expenses.created.sum(:amount)
   end
 
   # sobreescribí este metodo de Devise solo para poder enviar un subject distinto para el mail de bienvenida y el de reset pasword instruction

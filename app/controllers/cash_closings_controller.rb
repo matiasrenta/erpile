@@ -9,7 +9,7 @@ class CashClosingsController < ApplicationController
   # GET /cash_closings/1
   def show
     expenses = indexize(Expense, {collection: Expense.by_cash_closing(@cash_closing.id), no_paginate: true})
-    incomes  = indexize(Income, {collection: Income.by_project(@cash_closing.id), no_paginate: true})
+    incomes  = indexize(Income, {collection: Income.by_cash_closing(@cash_closing.id), no_paginate: true})
     @expenses_and_incomes = ( expenses + incomes ).sort_by(&:created_at).reverse
   end
 
