@@ -17,8 +17,10 @@
             <%= f.input :concept %>
             <%= f.input :amount, input_html: {style: 'color:red; font-weight: bold;'} %>
             <%= f.input :fecha, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', dateformat: "dd/mm/yy", value: creating? ? format_date_field(Time.now) : format_date_field(@expense.fecha)} %>
-            <%= f.association :user, collection: users_hide_or_show_superusers, selected: creating? ? current_user.id : @expense.user_id %>
-            <%= f.input :status, as: :select, collection: Expense::STATUS_TYPES, selected: f.object.status if updating?%>
+            <%#= f.association :user, collection: users_hide_or_show_superusers, selected: creating? ? current_user.id : @expense.user_id %>
+            <%= f.association :user, collection: users_hide_or_show_superusers, selected: creating? ? current_user.id : @expense.user_id, input_html: {disabled: true} %>
+            <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} if creating? %>
+            <%= f.input :status, as: :select, collection: Expense::STATUS_TYPES, selected: f.object.status, input_html: {disabled: true} if updating? %>
 
             <%= render 'shared/dropzone_multiple', locals: {f: f, field: :expense_attaches_files, max_filesize: Sett['REFILE_S3_EXPENSE_ATTACH_MAX_FILESIZE'].to_i} %>
 

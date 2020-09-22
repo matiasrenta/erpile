@@ -47,9 +47,13 @@ class Ability
 		can [:destroy], Transference, to_user_id: @user.id, status: Transference::STATUS_CREATED
 		can [:destroy], Transference, from_user_id: @user.id, status: Transference::STATUS_CREATED
 
-		can [:manage], Income
+		can [:create, :read], Income
+		can [:update, :destroy], Income, user_id: @user.id, status: Income::STATUS_CREATED
+		can [:create, :read], Expense
+		can [:update, :destroy], Expense, user_id: @user.id, status: Expense::STATUS_CREATED
+
 		can [:manage], Project
-		can [:manage], Expense
+
 		can [:manage], User
 		can :read, :administrations
 		can :change_user_role, User
