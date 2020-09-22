@@ -44,7 +44,7 @@
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.amount') %></strong></label>
 
                 <div class="col-lg-9 details-data">
-                  <span><%= @transference.amount ? "$ #{number_to_currency(@transference.amount, unit: '')}" : nil %></span>
+                  <span><%= @transference.amount ? number_to_currency(@transference.amount) : nil %></span>
                 </div>
               </div>
               <div class="row show-details">

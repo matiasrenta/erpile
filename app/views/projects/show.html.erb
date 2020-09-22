@@ -37,7 +37,7 @@
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.price') %></strong></label>
 
                 <div class="col-lg-9 details-data">
-                  <%= @project.price ? "$ #{number_to_currency(@project.price, unit: '')}" : nil %>
+                  <%= @project.price ? number_to_currency(@project.price) : nil %>
                 </div>
               </div>
 
@@ -46,9 +46,9 @@
                 <div class="col-lg-9 details-data">
                   <% saldo = @project.saldo %>
                   <% if saldo < 0 %>
-                      <span style="color: red"><%= "- $ #{number_to_currency(saldo, unit: '')}" %></span>
+                      <span style="color: red"><%= "- #{number_to_currency(saldo)}" %></span>
                   <% else %>
-                      <span style="color: blue"><%= "$ #{number_to_currency(saldo, unit: '')}" %></span>
+                      <span style="color: blue"><%= number_to_currency(saldo) %></span>
                   <% end %>
                 </div>
               </div>
@@ -165,9 +165,9 @@
                     <td><%= expense_or_income.concept %></td>
                     <td align='right'>
                       <% if expense_or_income.class.name == 'Income' %>
-                          <span style="color:blue;"><%= expense_or_income.amount ? "+ $ #{number_to_currency(expense_or_income.amount, unit: '')}" : nil %></span>
+                          <span style="color:blue;"><%= expense_or_income.amount ? "+ #{number_to_currency(expense_or_income.amount)}" : nil %></span>
                       <% else %>
-                          <span style="color:red;"><%= expense_or_income.amount ? "- $ #{number_to_currency(expense_or_income.amount, unit: '')}" : nil %></span>
+                          <span style="color:red;"><%= expense_or_income.amount ? "- #{number_to_currency(expense_or_income.amount)}" : nil %></span>
                       <% end %>
 
                     </td>

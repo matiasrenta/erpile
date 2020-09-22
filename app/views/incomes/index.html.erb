@@ -82,7 +82,7 @@
                   <tr>
                     <td><%= income.project.try(:name) %></td>
                     <td><%= income.concept %></td>
-                    <td align='right'><span style="color:blue;"><%= income.amount ? "$ #{number_to_currency(income.amount, unit: '')}" : nil %></span></td>
+                    <td align='right'><span style="color:blue;"><%= income.amount ? number_to_currency(income.amount) : nil %></span></td>
                     <td><%= l(income.fecha, format: :default) %></td>
                     <td><%= income.user.try(:name) %></td>
                     <td><%= income.i18n_status %></td>

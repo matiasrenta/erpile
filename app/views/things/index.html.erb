@@ -115,7 +115,7 @@
                   <tr>
                     <td><%= thing.name %></td>
                     <td align='right'><%= thing.age %></td>
-                    <td align='right'><%= thing.price ? number_to_currency(thing.price, unit: '') : nil %></td>
+                    <td align='right'><%= thing.price ? number_to_currency(thing.price) : nil %></td>
                     <td><%= l(thing.expires, format: :default) if thing.expires %></td>
                     <td><%= l(thing.discharged_at, format: :without_seg) if thing.discharged_at %></td>
                     <td>
@@ -259,7 +259,7 @@
                 <tr>
                   <td><%= thing.name %></td>
                   <td align='right'><%= thing.age %></td>
-                  <td align='right'><%= thing.price ? number_to_currency(thing.price, unit: '') : nil %></td>
+                  <td align='right'><%= thing.price ? number_to_currency(thing.price) : nil %></td>
                   <td><%= l(thing.expires, format: :default) if thing.expires %></td>
                   <td><%= l(thing.discharged_at, format: :without_seg) if thing.discharged_at %></td>
                   <td>
@@ -430,7 +430,7 @@
                 <tr>
                   <td><%= thing.name %></td>
                   <td align='right'><%= thing.age %></td>
-                  <td align='right'><%= thing.price ? number_to_currency(thing.price, unit: '') : nil %></td>
+                  <td align='right'><%= thing.price ? number_to_currency(thing.price) : nil %></td>
                   <td><%= l(thing.expires, format: :default) if thing.expires %></td>
                   <td><%= l(thing.discharged_at, format: :without_seg) if thing.discharged_at %></td>
                   <td>

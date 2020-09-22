@@ -64,7 +64,7 @@
               <% @projects.each do |project| %>
                   <tr>
                     <td><%= project.name %></td>
-                    <td align='right'><%= project.price ? "$ #{number_to_currency(project.price, unit: '')}" : nil %></td>
+                    <td align='right'><%= project.price ? number_to_currency(project.price) : nil %></td>
                     <td><%= project.i18n_status %></td>
                     <td class="table-actions">
                       <%= render 'shared/action_icons', locals: {target: project} %>

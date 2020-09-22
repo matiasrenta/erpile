@@ -25,9 +25,9 @@
                 <label class="col-lg-3 col-md-4 control-label"><span style="font-size: 20px;"><strong>LaPile</strong></span></label>
                 <div class="col-lg-9 details-data">
                   <% if @caja_lapile < 0 %>
-                      <span style="color: red; font-size: 20px;"><%= "$ #{number_to_currency(@caja_lapile, unit: '')}" %></span>
+                      <span style="color: red; font-size: 20px;"><%= number_to_currency(@caja_lapile) %></span>
                   <% else %>
-                      <span style="color: blue; font-size: 20px;"><%= "$ #{number_to_currency(@caja_lapile, unit: '')}" %></span>
+                      <span style="color: blue; font-size: 20px;"><%= number_to_currency(@caja_lapile) %></span>
                   <% end %>
                 </div>
               </div>
@@ -35,9 +35,9 @@
                 <label class="col-lg-3 col-md-4 control-label"><strong>Maxi</strong></label>
                 <div class="col-lg-9 details-data">
                   <% if @caja_maxi < 0 %>
-                      <span style="color: red;"><%= "$ #{number_to_currency(@caja_maxi, unit: '')}" %></span>
+                      <span style="color: red;"><%= number_to_currency(@caja_maxi) %></span>
                   <% else %>
-                      <span style="color: blue;"><%= "$ #{number_to_currency(@caja_maxi, unit: '')}" %></span>
+                      <span style="color: blue;"><%= number_to_currency(@caja_maxi) %></span>
                   <% end %>
                 </div>
               </div>
@@ -45,9 +45,9 @@
                 <label class="col-lg-3 col-md-4 control-label"><strong>Javi</strong></label>
                 <div class="col-lg-9 details-data">
                   <% if @caja_javi < 0 %>
-                      <span style="color: red;"><%= "$ #{number_to_currency(@caja_javi, unit: '')}" %></span>
+                      <span style="color: red;"><%= number_to_currency(@caja_javi) %></span>
                   <% else %>
-                      <span style="color: blue;"><%= "$ #{number_to_currency(@caja_javi, unit: '')}" %></span>
+                      <span style="color: blue;"><%= number_to_currency(@caja_javi) %></span>
                   <% end %>
                 </div>
               </div>
@@ -55,9 +55,9 @@
                 <label class="col-lg-3 col-md-4 control-label"><strong>Marcos</strong></label>
                 <div class="col-lg-9 details-data">
                   <% if @caja_marcos < 0 %>
-                      <span style="color: red;"><%= "$ #{number_to_currency(@caja_marcos, unit: '')}" %></span>
+                      <span style="color: red;"><%= number_to_currency(@caja_marcos) %></span>
                   <% else %>
-                      <span style="color: blue;"><%= "$ #{number_to_currency(@caja_marcos, unit: '')}" %></span>
+                      <span style="color: blue;"><%= number_to_currency(@caja_marcos) %></span>
                   <% end %>
                 </div>
               </div>
@@ -65,9 +65,9 @@
                 <label class="col-lg-3 col-md-4 control-label"><strong>Mati</strong></label>
                 <div class="col-lg-9 details-data">
                   <% if @caja_mati < 0 %>
-                      <span style="color: red;"><%= "$ #{number_to_currency(@caja_mati, unit: '')}" %></span>
+                      <span style="color: red;"><%= number_to_currency(@caja_mati) %></span>
                   <% else %>
-                      <span style="color: blue;"><%= "$ #{number_to_currency(@caja_mati, unit: '')}" %></span>
+                      <span style="color: blue;"><%= number_to_currency(@caja_mati) %></span>
                   <% end %>
                 </div>
               </div>
