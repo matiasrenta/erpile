@@ -121,7 +121,7 @@ es:
         unit: "$"
         separator: ","
         delimiter: "."
-        precision: 2
+        precision: 0
         significant: false
         strip_insignificant_zeros: false
 

@@ -34,6 +34,8 @@ class Project < ActiveRecord::Base
   accepts_attachments_for :project_attaches, attachment: :file, append: true
   accepts_nested_attributes_for :project_attaches, allow_destroy: true
 
+  scope :en_ejecucion, -> {where(status: STATUS_CREATED).where('porcentaje_avance > 0')}
+
 
   before_validation on: :create do
     self.status = STATUS_CREATED

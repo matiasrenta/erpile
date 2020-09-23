@@ -1,0 +1,40 @@
+<article class="col-sm-6">
+  <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget <%= @filter_active ? 'jarviswidget-color-redLight' : 'jarviswidget-color-darken' %>">
+
+    <header>
+      <%= "<h3>Proyectos en ejecución</h3>".html_safe %>
+    </header>
+
+    <div class="no-padding">
+      <div class="widget-body">
+        <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+          <thead>
+          <tr>
+            <th class='all control'><%= t('simple_form.labels.defaults.name') %></th>
+            <th><%= t('simple_form.labels.defaults.saldo') %></th>
+            <th><%= t('simple_form.labels.defaults.cobrado') %></th>
+            <th><%= t('simple_form.labels.defaults.avance') %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @projects.each do |project| %>
+              <tr>
+                <td><%= link_to project.name, project_path(project)  %></td>
+                <td><%= number_to_currency(project.saldo) %></td>
+                <td><%= (project.cobrado / project.price * 100).round %>%</td>
+                <td><%= project.i18n_avance %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+

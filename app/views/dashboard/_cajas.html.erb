@@ -1,0 +1,68 @@
+<article class="col-sm-6">
+
+  <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+    <header>
+      <h2>Cajas</h2>
+    </header>
+    <!-- widget div-->
+    <div class="no-padding">
+
+      <!-- widget content -->
+      <div class="widget-body">
+
+        <div class="form-group">
+          <div class="row show-details">
+            <label class="col-lg-3 col-md-4 control-label"><strong>Maxi</strong></label>
+            <div class="col-lg-9 details-data">
+              <% if @caja_maxi < 0 %>
+                  <span style="color: red;"><%= number_to_currency(@caja_maxi) %></span>
+              <% else %>
+                  <span style="color: blue;"><%= number_to_currency(@caja_maxi) %></span>
+              <% end %>
+            </div>
+          </div>
+          <div class="row show-details">
+            <label class="col-lg-3 col-md-4 control-label"><strong>Javi</strong></label>
+            <div class="col-lg-9 details-data">
+              <% if @caja_javi < 0 %>
+                  <span style="color: red;"><%= number_to_currency(@caja_javi) %></span>
+              <% else %>
+                  <span style="color: blue;"><%= number_to_currency(@caja_javi) %></span>
+              <% end %>
+            </div>
+          </div>
+          <div class="row show-details">
+            <label class="col-lg-3 col-md-4 control-label"><strong>Marcos</strong></label>
+            <div class="col-lg-9 details-data">
+              <% if @caja_marcos < 0 %>
+                  <span style="color: red;"><%= number_to_currency(@caja_marcos) %></span>
+              <% else %>
+                  <span style="color: blue;"><%= number_to_currency(@caja_marcos) %></span>
+              <% end %>
+            </div>
+          </div>
+          <div class="row show-details">
+            <label class="col-lg-3 col-md-4 control-label"><strong>Mati</strong></label>
+            <div class="col-lg-9 details-data">
+              <% if @caja_mati < 0 %>
+                  <span style="color: red;"><%= number_to_currency(@caja_mati) %></span>
+              <% else %>
+                  <span style="color: blue;"><%= number_to_currency(@caja_mati) %></span>
+              <% end %>
+            </div>
+          </div>
+          <div class="row show-details">
+            <label class="col-lg-3 col-md-4 control-label"><span style="font-size: 20px;"><strong>TOTAL</strong></span></label>
+            <div class="col-lg-9 details-data">
+              <% if @caja_lapile < 0 %>
+                  <span style="color: red; font-size: 20px;"><%= number_to_currency(@caja_lapile) %></span>
+              <% else %>
+                  <span style="color: blue; font-size: 20px;"><%= number_to_currency(@caja_lapile) %></span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
