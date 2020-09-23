@@ -191,11 +191,11 @@
                   <tr>
                     <td><%= l(cash_closing.fecha_hora, format: :without_seg) %></td>
                     <td><%= cash_closing.i18n_status %></td>
-                    <td align='right'><%= cash_closing.maxi_amount %></td>
-                    <td align='right'><%= cash_closing.javi_amount %></td>
-                    <td align='right'><%= cash_closing.marcos_amount %></td>
-                    <td align='right'><%= cash_closing.mati_amount %></td>
-                    <td align='right'><%= cash_closing.lapile_caja %></td>
+                    <td align='right'><%= number_to_currency(cash_closing.maxi_amount) %></td>
+                    <td align='right'><%= number_to_currency(cash_closing.javi_amount) %></td>
+                    <td align='right'><%= number_to_currency(cash_closing.marcos_amount) %></td>
+                    <td align='right'><%= number_to_currency(cash_closing.mati_amount) %></td>
+                    <td align='right'><%= number_to_currency(cash_closing.lapile_caja) %></td>
                     <td class="table-actions">
                       <%= render 'shared/action_icons', locals: {target: cash_closing} %>
                     </td>
