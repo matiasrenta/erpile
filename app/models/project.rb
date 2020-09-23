@@ -20,6 +20,13 @@ class Project < ActiveRecord::Base
                   ['CONTABILIZADO', STATUS_ACCOUNTED],
                   ['CANCELADO', STATUS_CANCELED]]
 
+  AVANCE_TYPES = [['1% ARRANCÓ', 0.01],
+                  ['25% LEVANTÓ VUELO', 0.25],
+                  ['50% A MITAD DE CAMINO', 0.50],
+                  ['75% LLEGANDO AL FINAL', 0.75],
+                  ['99% YA CASI CASI', 0.99],
+                  ['100% OBRA TERMINADA', 1]]
+
   has_many :expenses, dependent: :restrict_with_error
   has_many :incomes, dependent: :restrict_with_error
   has_many :project_attaches, dependent: :destroy
@@ -32,8 +39,8 @@ class Project < ActiveRecord::Base
     self.status = STATUS_CREATED
   end
 
-  validates :name, :status, :saldo, presence: true
-  validates :price, :saldo, numericality: true
+  validates :name, :status, :price, presence: true
+  validates :price, numericality: true
 
 
 
@@ -58,9 +65,18 @@ class Project < ActiveRecord::Base
     STATUS_TYPES.find { |e| e[1] == self.status}[0]
   end
 
-  def saldo
-    incomes.sum(:amount) - expenses.sum(:amount)
+  def i18n_avance
+    AVANCE_TYPES.find { |e| e[1] == self.porcentaje_avance}[0] if self.porcentaje_avance
   end
+
+  def cobrado
+    incomes.sum(:amount)
+  end
+
+  def saldo
+    cobrado - expenses.sum(:amount)
+  end
+
 
   def except_attr_in_public_activity
     [:id, :updated_at]
