@@ -10,14 +10,14 @@ class Project < ActiveRecord::Base
               :model_label => proc {|controller, model| model.try(:name)}
           }
 
-  STATUS_CREATED      = 'CREATED'
-  STATUS_CHARGED      = 'CHARGED'
-  STATUS_ACCOUNTED    = 'ACCOUNTED'
-  STATUS_CANCELED     = 'CANCELED'
+  STATUS_CREATED                    = 'CREATED'
+  STATUS_FINISHED                   = 'FINISHED'
+  STATUS_FINISHED_WITH_PROBLEMS     = 'FINISHED_WITH_PROBLEMS'
+  STATUS_CANCELED                   = 'CANCELED'
 
   STATUS_TYPES = [['CREADO', STATUS_CREATED],
-                  ['COBRADO', STATUS_CHARGED],
-                  ['CONTABILIZADO', STATUS_ACCOUNTED],
+                  ['FINALIZADO', STATUS_FINISHED],
+                  ['FINALIZADO CON PROBLEMAS', STATUS_FINISHED_WITH_PROBLEMS],
                   ['CANCELADO', STATUS_CANCELED]]
 
   AVANCE_TYPES = [['1% ARRANCÓ', 0.01],
