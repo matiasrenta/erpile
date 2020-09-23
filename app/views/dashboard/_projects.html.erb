@@ -20,7 +20,14 @@
           <% @projects.each do |project| %>
               <tr>
                 <td><%= link_to project.name, project_path(project)  %></td>
-                <td><%= number_to_currency(project.saldo) %></td>
+                <td>
+                  <% saldo = project.saldo %>
+                  <% if saldo < 0 %>
+                      <span style="color: red;"><%= number_to_currency(saldo) %></span>
+                  <% else %>
+                      <span style="color: blue;"><%= number_to_currency(saldo) %></span>
+                  <% end %>
+                </td>
                 <td><%= (project.cobrado / project.price * 100).round %>%</td>
                 <td><%= project.i18n_avance %></td>
               </tr>
